@@ -19,11 +19,11 @@ export class TodoService {
   private loadFromLocalStorage(): void {
     const todosJson = localStorage.getItem('todos');
     this.todos = todosJson ? JSON.parse(todosJson) : [
-      { id: 1, title: 'Fazer atualizações no projeto', status: 'completed', category: 'trabalho' },
-      { id: 2, title: 'Fazer jantar', status: 'completed', category: 'casa' },
-      { id: 3, title: 'Planejar apresentação', status: 'pending', category: 'estudo' },
-      { id: 4, title: 'Estudar Angular', status: 'pending', category: 'estudo' },
-      { id: 5, title: "Fazer Skin Care", status: 'pending', category: 'casa' }
+      { id: 1, title: 'Fazer atualizações no projeto', status: 'completed', category: 'trabalho', dueDate: '2024-08-10' },
+      { id: 2, title: 'Fazer jantar', status: 'completed', category: 'casa', dueDate: '2024-08-05' },
+      { id: 3, title: 'Planejar apresentação', status: 'inProgress', category: 'estudo', dueDate: '2024-08-20' },
+      { id: 4, title: 'Estudar Angular', status: 'pending', category: 'estudo', dueDate: '2024-08-12' },
+      { id: 5, title: "Fazer Skin Care", status: 'pending', category: 'casa', dueDate: '2024-08-06' }
 
     ];
     this.sortTodos();

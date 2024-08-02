@@ -1,9 +1,19 @@
 .app {
-  background-color: #B5B5BA;
-  height: 100%;
+  background-color: #f9f9f9;
+  background-image: linear-gradient(135deg, #f0f0f0 25%, transparent 25%),
+    linear-gradient(225deg, #f0f0f0 25%, transparent 25%),
+    linear-gradient(45deg, #f0f0f0 25%, transparent 25%),
+    linear-gradient(315deg, #f0f0f0 25%, transparent 25%);
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 0, 5px -5px, 0px 5px;
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column; 
 }
 
 .main-content {
   display: flex;
+  flex-direction: column;
+  flex: 1;
   justify-content: center;
 }

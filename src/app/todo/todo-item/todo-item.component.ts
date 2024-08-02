@@ -16,7 +16,7 @@ export class TodoItemComponent {
   constructor(private todoService: TodoService, private datePipe: DatePipe) {}
 
   deleteTodo(): void {
-    if (confirm('Are you sure you want to delete this task?')) {
+    if (confirm('Tem certeza que quer deletar?')) {
       this.todoService.deleteTodo(this.todo.id);
       this.deletedTodo.emit(this.todo.id);
     }
