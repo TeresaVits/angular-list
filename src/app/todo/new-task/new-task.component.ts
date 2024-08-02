@@ -17,7 +17,7 @@ export class NewTaskComponent {
   addTask() {
     if (this.newTaskTitle.trim() !== '' && this.newTaskCategory && this.newTaskDueDate) {
       const newTodo: Todo = {
-        id: this.todoService.getTodoNewId(),
+        id: '', // Será preenchido no serviço
         title: this.newTaskTitle,
         status: 'pending',
         category: this.newTaskCategory,

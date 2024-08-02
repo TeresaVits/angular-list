@@ -11,7 +11,7 @@ import { DatePipe } from '@angular/common';
 })
 export class TodoItemComponent {
   @Input() todo!: Todo;
-  @Output() deletedTodo: EventEmitter<number> = new EventEmitter<number>();
+  @Output() deletedTodo: EventEmitter<string> = new EventEmitter<string>(); // Atualizado para string
 
   constructor(private todoService: TodoService, private datePipe: DatePipe) {}
 

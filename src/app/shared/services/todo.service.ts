@@ -1,89 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
 import { Todo } from '../models/todo.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
-  private todos!: Todo[];
 
-  constructor() {
-    this.loadFromLocalStorage();
-  }
-
-  private saveToLocalStorage(): void {
-    localStorage.setItem('todos', JSON.stringify(this.todos));
-  }
-
-  private loadFromLocalStorage(): void {
-    const todosJson = localStorage.getItem('todos');
-    this.todos = todosJson ? JSON.parse(todosJson) : [
-      { id: 1, title: 'Fazer atualizações no projeto', status: 'completed', category: 'trabalho', dueDate: '2024-08-10' },
-      { id: 2, title: 'Fazer jantar', status: 'completed', category: 'casa', dueDate: '2024-08-05' },
-      { id: 3, title: 'Planejar apresentação', status: 'inProgress', category: 'estudo', dueDate: '2024-08-20' },
-      { id: 4, title: 'Estudar Angular', status: 'pending', category: 'estudo', dueDate: '2024-08-12' },
-      { id: 5, title: "Fazer Skin Care", status: 'pending', category: 'casa', dueDate: '2024-08-06' }
-
-    ];
-    this.sortTodos();
-  }
+  constructor(private firestore: AngularFirestore) {}
 
   getTodos(): Observable<Todo[]> {
-    return of(this.todos);
-  }
-
-  private updateLocalStorageAndSave(): void {
-    this.saveToLocalStorage();
+    return this.firestore.collection<Todo>('todos').valueChanges();
   }
 
   addTodo(newTodo: Todo): void {
-    this.todos.push(newTodo);
-    this.sortTodos();
-    this.updateLocalStorageAndSave();
+    newTodo.id = this.firestore.createId(); // Cria um ID único para o novo documento
+    this.firestore.collection('todos').doc(newTodo.id).set(newTodo);
   }
 
   updateTodo(updatedTodo: Todo): void {
-    const index = this.todos.findIndex(todo => todo.id === updatedTodo.id);
-    if (index !== -1) {
-      this.todos[index] = updatedTodo;
-      this.sortTodos();
-      this.updateLocalStorageAndSave();
-    }
+    this.firestore.collection('todos').doc(updatedTodo.id).update(updatedTodo);
   }
 
-  deleteTodo(todoId: number): void {
-    const index = this.todos.findIndex(todo => todo.id === todoId);
-    if (index !== -1) {
-      this.todos.splice(index, 1);
-      this.sortTodos();
-      this.updateLocalStorageAndSave();
-    }
+  deleteTodo(todoId: string): void {
+    this.firestore.collection('todos').doc(todoId).delete();
   }
 
-  getTodoNewId(): number {
-    return this.todos.reduce((maxId, todo) => Math.max(maxId, todo.id), 0) + 1;
-  }
-
-  sortTodos() {
-    this.todos.sort((a, b) => {
-      if (a.status === 'completed' && b.status !== 'completed') {
-        return 1;
-      } else if (a.status !== 'completed' && b.status === 'completed') {
-        return -1;
-      } else if (a.status === 'inProgress' && b.status === 'pending') {
-        return 1;
-      } else if (a.status === 'pending' && b.status === 'inProgress') {
-        return -1;
-      } else {
-        return 0;
-      }
+  clearAll(): void {
+    this.firestore.collection('todos').get().subscribe(snapshot => {
+      snapshot.forEach(doc => {
+        this.firestore.collection('todos').doc(doc.id).delete();
+      });
     });
   }
-
-  clearAll() {
-    this.todos = [];
-    this.updateLocalStorageAndSave();
-  }
-
 }

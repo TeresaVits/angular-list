@@ -1,22 +1,26 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { DatePipe } from '@angular/common';
-
-
-import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './layout/header/header.component';
+import { HeaderComponent } from './layout/header/header.component';// Importar o HeaderComponent
+import { TodoModule } from './todo/todo.module'; // Importar o módulo Todo se ele estiver em um módulo separado
 
 @NgModule({
   declarations: [
-    HeaderComponent,
-    AppComponent
+    AppComponent,
+    HeaderComponent // Declarar o HeaderComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    RouterModule.forRoot([]), // Certifique-se de que o RouterModule está configurado
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    TodoModule // Importar o módulo Todo
   ],
-  providers: [DatePipe,],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
