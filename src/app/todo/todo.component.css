@@ -1,0 +1,51 @@
+.todo-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.todo-list {
+  max-width: 50rem;
+  width: 100%;
+  background-color: #f9f9f9; /* Adicione uma cor de fundo */
+  padding: 1rem; /* Adicione espaçamento interno */
+  border-radius: 8px; /* Adicione cantos arredondados */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Adicione uma sombra */
+}
+
+.tasks-container {
+  margin-top: 1rem;
+  background-color: #ffffff; /* Adicione uma cor de fundo às seções de tarefas */
+  padding: 0.5rem; /* Adicione espaçamento interno */
+  border-radius: 8px; /* Adicione cantos arredondados */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Adicione uma sombra */
+}
+
+.tasks-container h3 {
+  margin-bottom: 0.5rem; /* Adicione espaçamento abaixo do título */
+}
+
+.todo-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+button {
+  background-color: #212227;
+  border: none;
+  border-radius: 0.5rem;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+
+button:hover {
+  background-color: #333;
+}
+
+.clear-all-button {
+  background-color: red;
+  margin-left: auto;
+}
+

@@ -1,0 +1,25 @@
+<div class="new-task">
+  <div class="new-task_input-container">
+    <input
+      id="new-task"
+      class="new-task_input"
+      type="text"
+      [(ngModel)]="newTaskTitle"
+      placeholder="Digite sua tarefa"
+    />
+    <select [(ngModel)]="newTaskCategory" class="new-task_select">
+      <option value="" disabled selected>Selecione a categoria</option>
+      <option value="casa">Casa</option>
+      <option value="estudo">Estudo</option>
+      <option value="trabalho">Trabalho</option>
+    </select>
+    <input
+      type="date"
+      [(ngModel)]="newTaskDueDate"
+      class="new-task_input"
+    />
+  </div>
+  <button class="new-task_button" (click)="addTask()">
+    <i class="fas fa-plus"></i>
+  </button>
+</div>

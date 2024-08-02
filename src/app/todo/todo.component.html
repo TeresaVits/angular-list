@@ -1,0 +1,40 @@
+<div class="todo-container">
+  <div class="todo-list">
+    <h2>To Do List</h2>
+    <app-new-task></app-new-task>
+
+    <div *ngIf="pendingTasks.length || inProgressTasks.length">
+      <div class="tasks-container">
+        <h3>Tarefas pendentes</h3>
+        <app-todo-item
+          *ngFor="let todo of pendingTasks"
+          [todo]="todo">
+        </app-todo-item>
+      </div>
+
+      <div class="tasks-container">
+        <h3>Tarefas em progresso</h3>
+        <app-todo-item
+          *ngFor="let todo of inProgressTasks"
+          [todo]="todo">
+        </app-todo-item>
+      </div>
+    </div>
+
+    <div *ngIf="completedTasks.length">
+      <div class="tasks-container">
+        <h3>Tarefas completas</h3>
+        <app-todo-item
+          *ngFor="let todo of completedTasks"
+          [todo]="todo">
+        </app-todo-item>
+      </div>
+    </div>
+
+    <div class="todo-actions">
+      <button class="clear-all-button" (click)="clearAll()">Deletar tudo</button>
+      
+    
+    </div>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Ajuste a posição verticalmente */
+  padding: 0.5rem; /* Adicione espaçamento ao redor dos itens */
+  border-bottom: 1px solid #e0e0e0; /* Adicione uma linha de separação entre os itens */
+}
+
+.todo-item_content {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Ajuste o espaçamento entre o checkbox e o label */
+}
+
+.todo-item_content label {
+  font-size: 1rem; /* Aumente o tamanho da fonte */
+  cursor: default;
+  user-select: none;
+}
+
+.todo-item_content input[type="checkbox"] {
+  margin-right: 0.7rem;
+  cursor: pointer;
+  accent-color: #B5B5BA;
+}
+
+.todo-item_content label.completed {
+  color: #B5B5BA;
+  text-decoration: line-through;
+}
+
+.todo-item_content label.inProgress {
+  color: orange;
+}
+
+.todo-item_content label.pending {
+  color: initial; /* ou outra cor padrão desejada */
+}
+
+.todo-item_delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.fa-trash-alt {
+  color: #413F3F;
+}
+
+.fa-trash-alt:hover {
+  color: rgba(65, 63, 63, 0.62);
+}
+
+.text-casa {
+  color: #9da5f1; /* Cor amarela para categoria 'casa' */
+}
+
+.text-estudo {
+  color: #e09df1; /* Cor azul para categoria 'estudo' */
+}
+
+.text-trabalho {
+  color: rgb(205, 50, 146); /* Cor verde para categoria 'trabalho' */
+}
+
+
+.text-date {
+  font-size: small;
+  color: #B5B5BA; /* Cor cinza para datas */
+}

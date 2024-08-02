@@ -1,0 +1,38 @@
+<div class="todo-item">
+  <div class="todo-item_content">
+    <input
+      id="task-{{ todo.id }}"
+      type="checkbox"
+      [checked]="todo.status === 'completed'"
+      (change)="onTaskChecked()"
+    />
+    <label
+      for="task-{{ todo.id }}"
+      [ngClass]="{
+        'completed': todo.status === 'completed',
+        'inProgress': todo.status === 'inProgress',
+        'pending': todo.status === 'pending',
+        'text-casa': todo.category === 'casa',
+        'text-estudo': todo.category === 'estudo',
+        'text-trabalho': todo.category === 'trabalho'
+      }"
+    >
+      {{ todo.title }}
+    </label>
+    <span
+      [ngClass]="{
+        'text-casa': todo.category === 'casa',
+        'text-estudo': todo.category === 'estudo',
+        'text-trabalho': todo.category === 'trabalho'
+      }"
+    >
+      {{ todo.category }}
+    </span>
+    <span class="text-date">
+      {{ formatDueDate(todo.dueDate) }}
+    </span>
+  </div>
+  <button class="todo-item_delete" (click)="deleteTodo()">
+    <i class="fas fa-trash-alt fa-lg"></i>
+  </button>
+</div>
